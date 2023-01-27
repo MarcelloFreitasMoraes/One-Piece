@@ -1,11 +1,22 @@
+import axios from 'axios';
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { SetStateAction, useEffect, useState } from 'react';
 
 export default function Home() {
+  const [data, setData] = useState();
+  const baseURL = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`;
+
+  useEffect(() => {
+    axios
+      .get(baseURL)
+      .then((response) => setData(response.data))
+      .catch(function (error: { toJSON: () => any; }) {
+        console.log(error.toJSON());
+      });
+  }, [baseURL]);
+
+  console.log(data, 'data');
+
   return (
     <>
       <Head>
@@ -14,7 +25,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <p>ola</p>
+      {data &&
+        Object.values(data).map((item: any) => {
+          return <p>{item.name}</p>
+        })}
     </>
   )
 }

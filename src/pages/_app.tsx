@@ -1,6 +1,13 @@
-import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import { GlobalStyle } from '@/styles/global'
+import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  const router = useRouter();
+  return (
+    <div className="container">
+      <GlobalStyle />
+      <Component key={router.asPath} {...pageProps} />
+    </div>
+  )
 }
