@@ -39,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         width: 100%;
         max-width: 1920px;
-        //background-color: var(--blue-dark);
+        background-color: var(--blue-dark);
     }
 
     textarea, button, select, input, span, a, h1, h2, h3, h4, h5, h6 {
