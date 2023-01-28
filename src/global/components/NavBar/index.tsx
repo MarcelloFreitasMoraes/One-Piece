@@ -8,6 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Image from 'next/image';
 import Logo from '@/global/assets/logo.webp'
+import header from '@/global/assets/header.png'
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -51,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({pieceFilter, data, IsSearch}: any) {
+export default function NavBar({pieceFilter, data, IsSearch, isHeader}: any) {
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
       <AppBar position="static">
@@ -80,6 +81,9 @@ export default function NavBar({pieceFilter, data, IsSearch}: any) {
           }
         </Toolbar>
       </AppBar>
+      {isHeader &&
+        <Image src={header} alt='header' width={1285} />
+      }
     </Box>
   );
 }
