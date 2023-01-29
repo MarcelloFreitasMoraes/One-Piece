@@ -33,7 +33,6 @@ export default function Description() {
         return (
       // eslint-disable-next-line react/jsx-key
       <p>
-        ola mundo
         {item.name}
       </p>
         );

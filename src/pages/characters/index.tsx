@@ -5,14 +5,17 @@ import NavBar from "@/global/components/NavBar";
 import { getPiece } from "@/services/onePieceServices";
 import { Loading } from "@/global/components/Loading";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function Characters() {
   const [data, setData] = useState<any>([]);
   const [resposta, setResposta] = useState([]);
+  const router = useRouter();
+  const { id } = router.query;
 
   const onePiece = (id: never[]) => {
     axios
-      .get(`https://one-piece-br-default-rtdb.firebaseio.com/characters.json/${id}`)
+      .get(`https://one-piece-br-default-rtdb.firebaseio.com/id.json/${id}`)
       .then((response: { data: any }) => {
         setResposta(response.data);
       })
