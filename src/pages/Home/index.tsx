@@ -35,7 +35,7 @@ export default function Home() {
 
       <S.Box>
       <M.Button variant="contained"
-      onClick={() =>  push('/characters')}
+      onClick={() => push('/characters')}
       >
         All Characters
       </M.Button>

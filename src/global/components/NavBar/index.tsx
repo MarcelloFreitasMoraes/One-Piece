@@ -9,6 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import Image from 'next/image';
 import Logo from '@/global/assets/logo.webp'
 import header from '@/global/assets/header.png'
+import { useRouter } from "next/router";
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,6 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function NavBar({pieceFilter, data, IsSearch, isHeader}: any) {
+  const { push } = useRouter()
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
       <AppBar position="static">
@@ -64,7 +66,9 @@ export default function NavBar({pieceFilter, data, IsSearch, isHeader}: any) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <Image src={Logo} alt={'logo'}/>
+            <Image src={Logo} alt={'logo'}
+            onClick={() => push('/Home')}
+            />
           </IconButton>        
             {IsSearch &&
           <Search>
