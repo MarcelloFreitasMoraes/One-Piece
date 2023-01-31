@@ -10,7 +10,7 @@ export default function Description() {
 
   useEffect(() => {
       axios
-        .get(`https://one-piece-br-default-rtdb.firebaseio.com/characters.json/${id}`,
+        .get(`https://one-piece-br-default-rtdb.firebaseio.com/characters.json?id=${id}`,
         {
           headers: {},
         }

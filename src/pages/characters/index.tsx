@@ -10,12 +10,13 @@ import { useRouter } from "next/router";
 export default function Characters() {
   const [data, setData] = useState<any>([]);
   const [resposta, setResposta] = useState([]);
+  
   const router = useRouter();
   const { id } = router.query;
 
   const onePiece = (id: never[]) => {
     axios
-      .get(`https://one-piece-br-default-rtdb.firebaseio.com/id.json/${id}`)
+      .get(`https://one-piece-br-default-rtdb.firebaseio.com/characters.json?id=${id}`)
       .then((response: { data: any }) => {
         setResposta(response.data);
       })
@@ -33,10 +34,10 @@ console.log(resposta, 'resposta');
       .catch(function (error: { toJSON: () => any }) {
         console.log(error.toJSON());
       });
-  }, []);
+  }, [id]);
 
   console.log(data, "data");
-
+  
   const pieceFilter = (name: string) => {
     if (name === "") {
       getPiece();
@@ -49,6 +50,18 @@ console.log(resposta, 'resposta');
     }
     setData(filterPiece);
   };
+  // const pieceFilter = (name: string) => {
+  //   if (name.toLowerCase() === "") {
+  //     getPiece();
+  //   }
+  //   let filterPiece: any = [];
+  //   for (let i in data) {
+  //     if (data[i].name.toLowerCase().includes(name.toLowerCase())) {
+  //       filterPiece.push(data[i]);
+  //     }
+  //   }
+  //   setData(filterPiece);
+  // };
   if (data.length === 0) {
     return <Loading />;
   }
