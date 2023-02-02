@@ -48,7 +48,8 @@ const style = {
   p: 4,
 };
 
-export default function ModalComponent ({open, onClose, personagemAtual }: any) {
+export default function ModalComponent ({open, onClose, data }: any) {
+console.log(data,'modal');
 
   return (
     <div>
@@ -66,7 +67,7 @@ export default function ModalComponent ({open, onClose, personagemAtual }: any) 
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="spring-modal-title" variant="h6" component="h2">
-              {personagemAtual?.name}
+              {data?.name}
             </Typography>
             <Typography id="spring-modal-description" sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.

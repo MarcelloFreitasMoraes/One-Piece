@@ -2,53 +2,54 @@ import CardsPiece from "@/global/components/Card";
 import React, { Fragment, useEffect, useState } from "react";
 import * as M from "@mui/material";
 import NavBar from "@/global/components/NavBar";
-import { getPiece } from "@/services/onePieceServices";
 import { Loading } from "@/global/components/Loading";
 import axios from "axios";
-import { useRouter } from "next/router";
 import Head from "next/head";
 import ModalComponent from "@/global/components/Modal";
 
 export default function Characters() {
   const [data, setData] = useState<any>([]);
-  const [resposta, setResposta] = useState([]);
+  const [resposta, setResposta] = useState<any>([]);
   const [open, setOpen] = React.useState(false);
   const [loading, setLoading] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  
-  const router = useRouter();
-  const { id } = router.query;
 
+  const baseUrl = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`
+  
   const onePiece = (id: never[]) => {
     axios
-      .get(`https://one-piece-br-default-rtdb.firebaseio.com/characters.json?id=${id}`)
-      .then((response: { data: any }) => {
+      .get(`${baseUrl}${id}`)
+      .then((response) => {
         setResposta(response.data);
+        setOpen(true);
       })
-      .catch(function (error: { toJSON: () => any }) {
-        console.log(error.toJSON());
-      });
+      .catch((err) => console.log(err));
   };
-console.log(resposta, 'resposta');
+
+  console.log(resposta,'resposta');
+  
+const getOnePiece = () => {
+  setLoading(true);
+  axios.get(baseUrl)
+    .then((res) => {
+      setData(res.data)
+      setLoading(false);
+    })
+    .catch((err) => console.log(err));
+}
 
 useEffect(() => {
-  setLoading(true)
-  getPiece()
-    .then((res: any) => {
-      setData(res?.data);
-      setLoading(false)
-    })
-    .catch(function (error: { toJSON: () => any }) {
-      console.log(error.toJSON());
-    });
-}, []);
+  getOnePiece()
+}, [])
 
   console.log(data, "data");
   
   const pieceFilter = (name: string) => {
     if (name === "") {
-      getPiece();
+      getOnePiece();
+      console.log('oi');
+      
     }
     let filterPiece: any = [];
     for (let i in data) {
@@ -86,19 +87,20 @@ useEffect(() => {
                     key={index}
                     onClick={() => onePiece(item.id)}
                   >
-                    <CardsPiece data={item} key={item.id} action={handleOpen} />
+                    <CardsPiece data={item} action={handleOpen} />
                   </M.Grid>
                 );
               })}
           </M.Grid>
         </>
       )}
-      {open && (
+      {/* {open && (
         <ModalComponent
         open={open}
         onClose={handleClose}
+        data={resposta}
         />
-      )}
+      )} */}
     </Fragment>
   );
 }

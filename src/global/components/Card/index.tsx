@@ -11,7 +11,7 @@ export default function Cards({ data, action }: any) {
 
   return (
     <Card sx={{ maxWidth: 345}}>
-      {/* <Link href={`description?id=${data.id}`} passHref> */}
+      <Link href={`description?id=${data.id}`} passHref>
       <div onClick={action}>
       <CardActionArea>
         <CardContent sx={{ display: "flex", alignItems: "center" }}>
@@ -29,7 +29,7 @@ export default function Cards({ data, action }: any) {
         </CardContent>
       </CardActionArea>
       </div>
-      {/* </Link> */}
+      </Link>
     </Card>
   );
 }
