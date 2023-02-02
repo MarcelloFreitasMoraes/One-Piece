@@ -2,9 +2,7 @@ import * as React from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-// web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
 
 interface FadeProps {
@@ -50,19 +48,15 @@ const style = {
   p: 4,
 };
 
-export default function SpringModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default function ModalComponent ({open, onClose, personagemAtual }: any) {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Details</Button>
       <Modal
         aria-labelledby="spring-modal-title"
         aria-describedby="spring-modal-description"
         open={open}
-        onClose={handleClose}
+        onClose={onClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
@@ -72,7 +66,7 @@ export default function SpringModal() {
         <Fade in={open}>
           <Box sx={style}>
             <Typography id="spring-modal-title" variant="h6" component="h2">
-              Text in a modal
+              {personagemAtual?.name}
             </Typography>
             <Typography id="spring-modal-description" sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
