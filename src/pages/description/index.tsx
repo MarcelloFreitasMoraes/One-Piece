@@ -3,15 +3,22 @@ import { useRouter } from "next/router";
 import { Fragment, useEffect, useState } from "react";
 import * as M from "@mui/material";
 import Head from "next/head";
+import { usePiece } from "@/global/Provider/context";
+import * as S from "./styles";
 
 export default function Description() {
-  const [data, setData] = useState();
+  const [data, setData] = useState<any>([]);
   const router = useRouter();
   const { id } = router.query;
+  
+  const { personagemAtual } = usePiece();
+
+  console.log(personagemAtual, 'personagemAtual');
+
 
   useEffect(() => {
       axios
-        .get(`https://one-piece-br-default-rtdb.firebaseio.com/characters.json?id=${id}`,
+        .get(`https://one-piece-br-default-rtdb.firebaseio.com/characters.json`,
         {
           headers: {},
         }
@@ -26,7 +33,13 @@ export default function Description() {
 
   console.log(data, 'description');
   
- 
+const filterOne = data && Object.values(data).filter((character: any) => {
+  return character.id === 1;
+});
+// const found = resposta?.find((value: any) => {
+//   return value.id === 2;
+// });
+console.log(filterOne, 'filterOne')
   return (   
     <Fragment>
      <Head>
@@ -35,13 +48,15 @@ export default function Description() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    {data &&
-      Object.values(data).map((item: any, index: any) => {
+    {filterOne.map((item: any, index: any) => {
         return (
       // eslint-disable-next-line react/jsx-key
-      <p>
-        {item.name}
-      </p>
+      <>
+            <p>
+              {item.name}
+            </p>
+            <S.img src={item.img} alt='img' />
+            </>
         );
       })}      
   </Fragment>

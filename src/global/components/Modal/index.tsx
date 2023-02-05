@@ -70,7 +70,7 @@ console.log(data,'modal');
               {data?.name}
             </Typography>
             <Typography id="spring-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            {data?.description}
             </Typography>
           </Box>
         </Fade>

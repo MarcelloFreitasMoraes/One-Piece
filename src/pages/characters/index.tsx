@@ -6,6 +6,10 @@ import { Loading } from "@/global/components/Loading";
 import axios from "axios";
 import Head from "next/head";
 import ModalComponent from "@/global/components/Modal";
+import { useRouter } from "next/router";
+import { usePiece } from "@/global/Provider/context";
+import { Data } from "@/global/@types/types";
+
 
 export default function Characters() {
   const [data, setData] = useState<any>([]);
@@ -15,11 +19,15 @@ export default function Characters() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const baseUrl = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`
+  const router = useRouter();
+  const { id } = router.query;
   
+  const { personagemAtual } = usePiece();
+ 
   const onePiece = (id: never[]) => {
+    const URL = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`
     axios
-      .get(`${baseUrl}${id}`)
+      .get(URL + `${id}`)
       .then((response) => {
         setResposta(response.data);
         setOpen(true);
@@ -30,6 +38,7 @@ export default function Characters() {
   console.log(resposta,'resposta');
   
 const getOnePiece = () => {
+  const baseUrl = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`
   setLoading(true);
   axios.get(baseUrl)
     .then((res) => {
@@ -43,24 +52,33 @@ useEffect(() => {
   getOnePiece()
 }, [])
 
-  console.log(data, "data");
-  
-  const pieceFilter = (name: string) => {
-    if (name === "") {
-      getOnePiece();
-      console.log('oi');
-      
-    }
-    let filterPiece: any = [];
-    for (let i in data) {
-      if (data[i].name.includes(name)) {
-        filterPiece.push(data[i]);
-      }
-    }
-    setData(filterPiece);
-  };
 
-  return (
+console.log(data, "data");
+
+const pieceFilter = (name: string) => {
+  if (name === "") {
+    getOnePiece();
+  }
+  let filterPiece: any = [];
+  for (let i in data) {
+    if (data[i].name.includes(name)) {
+      filterPiece.push(data[i]);
+    }
+  }
+  setData(filterPiece);
+};
+
+// const IdPiece = Array.isArray(data)?.filter((character: { id: any; }) => character?.id === personagemAtual);
+const filterOne = data && Object.values(data).filter((character: any) => {
+  return character.id === 2;
+});
+console.log(personagemAtual, 'personagemAtual filter');
+// const found = data && Object.values(data).find((value: any) => {
+//   return value.id === 2;
+// });
+console.log(filterOne, 'filterOne')
+// console.log(found, 'found')
+return (
     <Fragment>
        <Head>
         <title>One Piece | All Characters</title>
@@ -78,14 +96,13 @@ useEffect(() => {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {data &&
-              Object.values(data).map((item: any, index: any) => {
+            {data && Object.values(data).map((item: any, index: any) => {
                 return (
                   <M.Grid
                     item
                     xs={3}
                     key={index}
-                    onClick={() => onePiece(item.id)}
+                    onClick={() => onePiece(item.name)}
                   >
                     <CardsPiece data={item} action={handleOpen} />
                   </M.Grid>
@@ -98,7 +115,7 @@ useEffect(() => {
         <ModalComponent
         open={open}
         onClose={handleClose}
-        data={resposta}
+        data={data}
         />
       )} */}
     </Fragment>
