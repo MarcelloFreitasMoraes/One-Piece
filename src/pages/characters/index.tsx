@@ -6,10 +6,6 @@ import { Loading } from "@/global/components/Loading";
 import axios from "axios";
 import Head from "next/head";
 import ModalComponent from "@/global/components/Modal";
-import { useRouter } from "next/router";
-import { usePiece } from "@/global/Provider/context";
-import { Data } from "@/global/@types/types";
-
 
 export default function Characters() {
   const [data, setData] = useState<any>([]);
@@ -18,12 +14,7 @@ export default function Characters() {
   const [loading, setLoading] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-  const router = useRouter();
-  const { id } = router.query;
   
-  const { personagemAtual } = usePiece();
- 
   const onePiece = (id: never[]) => {
     const URL = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`
     axios
@@ -68,16 +59,6 @@ const pieceFilter = (name: string) => {
   setData(filterPiece);
 };
 
-// const IdPiece = Array.isArray(data)?.filter((character: { id: any; }) => character?.id === personagemAtual);
-const filterOne = data && Object.values(data).filter((character: any) => {
-  return character.id === 2;
-});
-console.log(personagemAtual, 'personagemAtual filter');
-// const found = data && Object.values(data).find((value: any) => {
-//   return value.id === 2;
-// });
-console.log(filterOne, 'filterOne')
-// console.log(found, 'found')
 return (
     <Fragment>
        <Head>

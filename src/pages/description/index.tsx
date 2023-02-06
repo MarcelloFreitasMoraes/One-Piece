@@ -6,6 +6,7 @@ import Head from "next/head";
 import { usePiece } from "@/global/Provider/context";
 import NavBar from "@/global/components/NavBar";
 import CardInfos from "@/global/components/CardInfos";
+import CardFuit from "@/global/components/FruitInfo";
 
 export default function Description() {
   const [data, setData] = useState<any>([]);
@@ -36,7 +37,7 @@ export default function Description() {
   const filterOne =
     data &&
     Object.values(data).filter((character: any) => {
-      return character.id === 1;
+      return character.id === 2;
     });
 
   // const found = resposta?.find((value: any) => {
@@ -56,7 +57,10 @@ export default function Description() {
       <NavBar />
       {filterOne.map((item: any) => {
         return (
-            <CardInfos data={item} key={item.id} />
+            <Fragment key={item.id}>
+            <CardInfos data={item}  />
+            <CardFuit data={item}/>
+            </Fragment>
         );
       })}
     </Fragment>
