@@ -14,16 +14,6 @@ const OnePieceContext = createContext({} as MyContextProps);
 const OnePieceContextProvider = ({ children }: MyProviderProps) => {
     const [personagemAtual, setPersonagemAtual] = useState<Array<Data>>([])
 
-    // useEffect(() => {
-    //     if (typeof window !== "undefined") {
-    //         const item = window.localStorage.getItem('id');
-    //         if (item !== null) {
-    //             const response = JSON.parse(item);
-    //             if (response) setPersonagemAtual(response)
-    //         }
-    //     }
-    // }, [])
-
     return (
         <OnePieceContext.Provider value={{ personagemAtual, setPersonagemAtual }}>
             {children}

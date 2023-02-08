@@ -34,11 +34,11 @@ export default function Home() {
       </M.Typography>
 
       <S.Box>
-      <M.Button variant="contained"
-      onClick={() => push('/characters')}
-      >
-        All Characters
-      </M.Button>
+        <M.Button variant="contained"
+          onClick={() => push('/characters')}
+        >
+          All Characters
+        </M.Button>
       </S.Box>
     </Fragment>
   );

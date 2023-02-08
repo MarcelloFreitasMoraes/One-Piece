@@ -14,16 +14,16 @@ export default function Description() {
   const { id } = router.query;
   const { personagemAtual } = usePiece();
 
-
   useEffect(() => {
     axios
       .get(
-        `https://one-piece-br-default-rtdb.firebaseio.com/characters.json/${personagemAtual}`,
+        `https://one-piece-br-default-rtdb.firebaseio.com/characters/${id}.json/`,
         {
           headers: {},
         }
       )
       .then((response: { data: any }) => {
+        console.log(response, "description");
         setData(response.data);
       })
       .catch(function (error: { toJSON: () => any }) {
@@ -31,21 +31,6 @@ export default function Description() {
       });
   }, [id, personagemAtual]);
 
-  console.log(data, "description");
-  console.log(personagemAtual, "personagemAtual");
-
-  const filterOne =
-    data &&
-    Object.values(data).filter((character: any) => {
-      return character.id === 2;
-    });
-
-  // const found = resposta?.find((value: any) => {
-  //   return value.id === 2;
-  // });
-
-  console.log(filterOne, "filterOne");
-  
   return (
     <Fragment>
       <Head>
@@ -55,14 +40,10 @@ export default function Description() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar />
-      {filterOne.map((item: any) => {
-        return (
-            <Fragment key={item.id}>
-            <CardInfos data={item}  />
-            <CardFuit data={item}/>
-            </Fragment>
-        );
-      })}
+      <Fragment >
+        <CardInfos data={data} />
+        <CardFuit data={data} />
+      </Fragment>
     </Fragment>
   );
 }
