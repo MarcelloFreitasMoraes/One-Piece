@@ -3,13 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     :root {
         //Colors
-        --red-700: #870207;
-        --red-400: #FF000A;
-        --red-600: #ec3237;
+         --light: #ffffff;
 
-        --light: #ffffff;
-
-        --gradient: linear-gradient(to right, var(--red-700), var(--red-400));
         --blue-dark: #0a0f19;
         --blue-darksky: #5E6D8C;
 

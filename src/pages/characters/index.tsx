@@ -5,7 +5,6 @@ import NavBar from "@/global/components/NavBar";
 import { Loading } from "@/global/components/Loading";
 import axios from "axios";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
 export default function Characters() {
   const [data, setData] = useState<any>([]);
@@ -65,7 +64,6 @@ export default function Characters() {
                   xs={3}
                   key={index}
                 >
-                  <p>ted</p>
                   <CardsPiece data={item} />
                 </M.Grid>
               );

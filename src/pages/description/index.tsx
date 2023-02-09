@@ -1,18 +1,20 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Fragment, useEffect, useState } from "react";
-import * as M from "@mui/material";
+import React, { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
-import { usePiece } from "@/global/Provider/context";
 import NavBar from "@/global/components/NavBar";
 import CardInfos from "@/global/components/CardInfos";
-import CardFuit from "@/global/components/FruitInfo";
+import RecipeReviewCard from "@/global/components/CardInfos/card";
 
 export default function Description() {
   const [data, setData] = useState<any>([]);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const router = useRouter();
   const { id } = router.query;
-  const { personagemAtual } = usePiece();
 
   useEffect(() => {
     axios
@@ -23,14 +25,14 @@ export default function Description() {
         }
       )
       .then((response: { data: any }) => {
-        console.log(response, "description");
+        //console.log(response, "description");
         setData(response.data);
       })
       .catch(function (error: { toJSON: () => any }) {
         console.log(error.toJSON());
       });
-  }, [id, personagemAtual]);
-
+  }, [id]);
+  //console.log(data, "data description");
   return (
     <Fragment>
       <Head>
@@ -39,10 +41,9 @@ export default function Description() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar />
+      <NavBar isBack />
       <Fragment >
-        <CardInfos data={data} />
-        <CardFuit data={data} />
+        <RecipeReviewCard data={data} open={open} handleClose={handleClose} handleOpen={handleOpen} />
       </Fragment>
     </Fragment>
   );

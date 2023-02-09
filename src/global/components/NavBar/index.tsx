@@ -8,8 +8,10 @@ import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import Image from 'next/image';
 import Logo from '@/global/assets/logo.webp'
-import header from '@/global/assets/header.png'
 import { useRouter } from "next/router";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -53,12 +55,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({pieceFilter, data, IsSearch, isHeader}: any) {
+export default function NavBar({ pieceFilter, data, IsSearch, isBack }: any) {
   const { push } = useRouter()
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
       <AppBar position="static">
-        <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
+        <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <IconButton
             size="large"
             edge="start"
@@ -67,27 +69,31 @@ export default function NavBar({pieceFilter, data, IsSearch, isHeader}: any) {
             sx={{ mr: 2 }}
           >
             <Image src={Logo} alt={'logo'}
-            onClick={() => push('/Home')}
+              onClick={() => push('/Home')}
             />
-          </IconButton>        
-            {IsSearch &&
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-              value={data}
-              onChange={(e) => pieceFilter(e.target.value)}
-            />
-          </Search>
+          </IconButton>
+          {IsSearch &&
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                value={data}
+                onChange={(e) => pieceFilter(e.target.value)}
+              />
+            </Search>
+          }
+          {isBack &&
+            <Grid sx={{ display: 'flex' }} onClick={() => push('/characters')}>
+              <><ArrowBackIosNewIcon sx={{ cursor: 'pointer' }} />
+                <Typography sx={{ cursor: 'pointer' }}>VOLTAR</Typography></>
+            </Grid>
           }
         </Toolbar>
       </AppBar>
-      {isHeader &&
-        <Image src={header} alt='header' width={1285} />
-      }
+
     </Box>
   );
 }
