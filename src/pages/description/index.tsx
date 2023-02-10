@@ -43,7 +43,7 @@ export default function Description() {
       </Head>
       <NavBar isBack />
       <Fragment >
-        <RecipeReviewCard data={data} open={open} handleClose={handleClose} handleOpen={handleOpen} />
+        <CardInfos data={data} open={open} handleClose={handleClose} handleOpen={handleOpen} />
       </Fragment>
     </Fragment>
   );

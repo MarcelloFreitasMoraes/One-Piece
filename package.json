@@ -23,9 +23,9 @@
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
     "next": "13.1.5",
-    "react": "^16.x",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-context-api": "1.0.2",
-    "react-dom": "^16.x",
     "react-spring": "^8.x",
     "styled-components": "^5.x",
     "typescript": "4.9.4"
@@ -34,8 +34,8 @@
     "@types/styled-components": "5.1.26"
   },
   "peerDependencies": {
-    "react": "^16.x",
-    "react-dom": "^16.x",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-spring": "^8.x",
     "styled-components": "^5.x"
   }

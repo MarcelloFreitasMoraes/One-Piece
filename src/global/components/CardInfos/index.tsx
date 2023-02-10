@@ -15,7 +15,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
   return (
     <M.Container maxWidth="xl">
       <M.Card sx={{ display: "flex", maxWidth: "150rem", height: "45rem", margin: "0 auto" }}>
-        <S.Img src={data.img !== "" ? data.img : notImage} alt="img" />
+        <S.Img src={data?.img !== "" ? data?.img : notImage} alt="img" />
         <M.Grid>
           <M.Grid sx={{ display: 'flex', justifyContent: 'space-between' }} >
             <M.Typography
@@ -30,7 +30,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               }}
             >
               Name: {' '}
-              {data.name}
+              {data?.name}
             </M.Typography>
 
             {data?.fruit?.returned !== 0 && (
@@ -52,7 +52,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               paddingLeft: "20px",
             }}
           >
-            Age: {data.age}
+            Age: {data?.age}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -65,7 +65,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               paddingLeft: "20px",
             }}
           >
-            Job: {data.job}
+            Job: {data?.job}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -78,7 +78,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               paddingLeft: "20px",
             }}
           >
-            Height: {data.height}
+            Height: {data?.height}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -91,7 +91,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               paddingLeft: "20px",
             }}
           >
-            Status: {data.status}
+            Status: {data?.status}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -104,7 +104,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               paddingLeft: "20px",
             }}
           >
-            Birthday: {data.birthday}
+            Birthday: {data?.birthday}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -122,7 +122,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
           <br />
           <M.Typography
             gutterBottom
-            variant="h5"
+            variant="h6"
             component="div"
             sx={{
               //width: "345px",
