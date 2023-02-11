@@ -4,7 +4,7 @@ import * as M from "@mui/material";
 
 const style = {
     position: "absolute" as "absolute",
-    top: "45%",
+    top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 800,
@@ -34,6 +34,14 @@ export default function Modals({ handleClose, open, handleOpen, data }: any) {
                     >
                         {data?.fruit?.name !== "" ? data?.fruit?.name : ""}
                     </M.Typography>
+                    <M.Typography id="keep-mounted-modal-description" sx={{ mt: 1 }}>
+                        <strong>Type:</strong>{" "}
+                        {data?.fruit?.type !== "" ? data?.fruit?.type : ""}
+                    </M.Typography>
+                    <M.Typography id="keep-mounted-modal-description">
+                        <strong>Power:</strong>{" "}
+                        {data?.fruit?.power !== "" ? data?.fruit?.power : ""}
+                    </M.Typography>
                     <M.Grid
                         sx={{
                             display: "flex",
@@ -52,15 +60,7 @@ export default function Modals({ handleClose, open, handleOpen, data }: any) {
                             src={data?.fruit?.img !== "" ? data?.fruit?.img : ""}
                             alt="Fuit"
                         />
-                    </M.Grid>
-                    <M.Typography id="keep-mounted-modal-description" sx={{ mt: 1 }}>
-                        <strong>Type:</strong>{" "}
-                        {data?.fruit?.type !== "" ? data?.fruit?.type : ""}
-                    </M.Typography>
-                    <M.Typography id="keep-mounted-modal-description">
-                        <strong>Power:</strong>{" "}
-                        {data?.fruit?.power !== "" ? data?.fruit?.power : ""}
-                    </M.Typography>
+                    </M.Grid>                  
                 </M.Box>
             </M.Modal>
         </div>

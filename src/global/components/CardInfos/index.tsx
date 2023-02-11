@@ -117,7 +117,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               paddingLeft: "20px",
             }}
           >
-            Bounty: ฿ {' '} {data.bounty}
+            Bounty: ฿ {' '} {data?.bounty}
           </M.Typography>
           <br />
           <M.Typography
@@ -131,7 +131,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
               paddingLeft: "20px",
             }}
           >
-            Description: {data.description}
+            Description: {data?.description}
           </M.Typography>
         </M.Grid>
       </M.Card>

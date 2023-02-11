@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as M from "@mui/material"
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function Cards({ data, action }: any) {
@@ -11,7 +10,6 @@ export default function Cards({ data, action }: any) {
 
   return (
     <M.Card sx={{ maxWidth: "345px", height: "25rem", margin: "0 auto" }}>
-      {/* <Link href={`description?id=${data[0]}`} passHref> */}
       <div onClick={() => push(`/description?id=${data[0]}`)}>
         <M.CardActionArea>
           <M.Typography
@@ -41,7 +39,6 @@ export default function Cards({ data, action }: any) {
           </M.CardContent>
         </M.CardActionArea>
       </div>
-      {/* </Link> */}
     </M.Card>
   );
 }
