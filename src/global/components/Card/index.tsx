@@ -1,8 +1,9 @@
 import * as React from "react";
 import * as M from "@mui/material"
 import { useRouter } from "next/router";
+import { CardOneProps } from "./types";
 
-export default function Cards({ data, action }: any) {
+export default function Cards({ data }: CardOneProps) {
   const { push } = useRouter()
   const notImage =
     "https://i.pinimg.com/564x/22/96/b7/2296b76fcbad3dd2764033c667dde33c.jpg";

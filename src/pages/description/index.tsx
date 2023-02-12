@@ -4,10 +4,10 @@ import React, { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 import NavBar from "@/global/components/NavBar";
 import CardInfos from "@/global/components/CardInfos";
-import RecipeReviewCard from "@/global/components/CardInfos/card";
+import { Data } from "@/global/@types/types";
 
 export default function Description() {
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Data[]>([]);
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -19,16 +19,12 @@ export default function Description() {
   useEffect(() => {
     axios
       .get(
-        `https://one-piece-br-default-rtdb.firebaseio.com/characters/${id}.json/`,
-        {
-          headers: {},
-        }
-      )
-      .then((response: { data: any }) => {
+        `https://one-piece-br-default-rtdb.firebaseio.com/characters/${id}.json/`)
+      .then((response) => {
         //console.log(response, "description");
         setData(response.data);
       })
-      .catch(function (error: { toJSON: () => any }) {
+      .catch(function (error) {
         console.log(error.toJSON());
       });
   }, [id]);

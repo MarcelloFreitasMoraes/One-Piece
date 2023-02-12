@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as S from "./styles";
 import * as M from "@mui/material";
+import { ModalProps } from "./types";
 
 const style = {
     position: "absolute" as "absolute",
@@ -15,7 +16,7 @@ const style = {
     p: 4,
 };
 
-export default function Modals({ handleClose, open, handleOpen, data }: any) {
+export default function Modals({ handleClose, open, data }: ModalProps) {
     return (
         <div>
             <M.Modal

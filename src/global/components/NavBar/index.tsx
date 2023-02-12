@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import { NavProps } from './types';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,7 +56,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({ pieceFilter, data, IsSearch, isBack }: any) {
+export default function NavBar({ pieceFilter, IsSearch, isBack }: NavProps) {
   const { push } = useRouter()
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
@@ -80,7 +81,6 @@ export default function NavBar({ pieceFilter, data, IsSearch, isBack }: any) {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
-                value={data}
                 onChange={(e) => pieceFilter(e.target.value)}
               />
             </Search>

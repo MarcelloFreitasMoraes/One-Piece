@@ -3,12 +3,13 @@ import * as M from "@mui/material";
 import * as S from "./styles";
 import Modals from "../Modal";
 import InfoIcon from '@mui/icons-material/Info';
+import { CardInfosProps } from "./types";
 
 const style = {
   margin: '20px 25px 0 0'
 };
 
-export default function CardInfos({ data, open, handleClose, handleOpen }: any) {
+export default function CardInfos({ data, open, handleClose, handleOpen }: CardInfosProps) {
   const notImage =
     "https://i.pinimg.com/564x/22/96/b7/2296b76fcbad3dd2764033c667dde33c.jpg";
 
@@ -125,7 +126,6 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
             variant="h6"
             component="div"
             sx={{
-              //width: "345px",
               color: "#000",
               margin: "5px 0",
               paddingLeft: "20px",
@@ -136,7 +136,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: any) 
         </M.Grid>
       </M.Card>
       <div>
-        <Modals data={data} open={open} handleClose={handleClose} handleOpen={handleOpen} />
+        <Modals data={data} open={open} handleClose={handleClose} />
       </div>
     </M.Container>
   );

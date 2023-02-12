@@ -1,35 +1,42 @@
 import CardsPiece from "@/global/components/Card";
 import React, { Fragment, useEffect, useState } from "react";
 import * as M from "@mui/material";
+import * as S from "@/styles/styles.characters";
 import NavBar from "@/global/components/NavBar";
 import { Loading } from "@/global/components/Loading";
 import axios from "axios";
 import Head from "next/head";
+import { Data } from "@/global/@types/types";
+import { PaginationComponent } from "@/global/components/Pagination";
+import { SelectOptionsComponent } from "@/global/components/SelectOptions";
 
 export default function Characters() {
-  const [data, setData] = useState<any>([]);
+  const [data, setData] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itensPerPage, setItensPerPage] = useState(12);
 
   const getOnePiece = () => {
-    const baseUrl = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`
+    const baseUrl = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`;
     setLoading(true);
-    axios.get(baseUrl)
+    axios
+      .get(baseUrl)
       .then((res) => {
-        setData(res.data)
+        setData(res.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   useEffect(() => {
-    getOnePiece()
-  }, [])
+    getOnePiece();
+  }, []);
 
   const pieceFilter = (name: string) => {
     if (name === "") {
       getOnePiece();
     }
-    let filterPiece: any = [];
+    let filterPiece = [];
     for (let i in data) {
       if (data[i].name.toLowerCase().includes(name.toLowerCase())) {
         filterPiece.push(data[i]);
@@ -37,6 +44,27 @@ export default function Characters() {
     }
     setData(filterPiece);
   };
+
+  const pages = Math.ceil(data.length / itensPerPage);
+  const startIndex = currentPage * itensPerPage;
+  const endIndex = startIndex + itensPerPage;
+  const currentItens = data && Object.entries(data).slice(startIndex, endIndex);
+  console.log(currentItens, "currentItens");
+
+  const resultSearchTitle = () => {
+    return (
+      <S.Heading>
+        <SelectOptionsComponent
+          itensPerPage={itensPerPage}
+          setItensPerPage={setItensPerPage}
+        />
+      </S.Heading>
+    );
+  };
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [itensPerPage]);
 
   return (
     <Fragment>
@@ -46,7 +74,8 @@ export default function Characters() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar pieceFilter={pieceFilter} value={data} IsSearch />
+      <NavBar pieceFilter={pieceFilter} />
+      {/* {resultSearchTitle()} */}
       {loading ? (
         <Loading />
       ) : (
@@ -56,19 +85,20 @@ export default function Characters() {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {data && Object.entries(data).map((item: any, index: any) => {
-              console.log(item, 'item')
-              return (
-                <M.Grid
-                  item
-                  xs={3}
-                  key={index}
-                >
-                  <CardsPiece data={item} />
-                </M.Grid>
-              );
-            })}
+            {data && Object.entries(data).map((item, index) => {
+                console.log(item, "item");
+                return (
+                  <M.Grid item xs={3} key={index}>
+                    <CardsPiece data={item} />
+                  </M.Grid>
+                );
+              })}
           </M.Grid>
+          {/* <PaginationComponent
+            pages={pages}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          /> */}
         </>
       )}
     </Fragment>
