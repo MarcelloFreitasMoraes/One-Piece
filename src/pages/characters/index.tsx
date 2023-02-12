@@ -27,6 +27,7 @@ export default function Characters() {
       })
       .catch((err) => console.log(err));
   };
+console.log(data, 'data');
 
   useEffect(() => {
     getOnePiece();

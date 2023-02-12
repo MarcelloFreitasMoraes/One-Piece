@@ -6,7 +6,7 @@ import { INumberPages } from './types';
 export function PaginationComponent({ pages, setCurrentPage, currentPage }: INumberPages) {
   return (
     <S.Pagination>
-      {Array.from(Array(0, pages), (_, index) => {
+      {Array.from(Array(pages), (_item, index) => {
         return(
         <S.Button
           onClick={(event: any) => setCurrentPage(Number(event.target.value))}
