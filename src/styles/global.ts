@@ -33,7 +33,6 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         width: 100%;
-        max-width: 1920px;
         background-color: var(--blue-dark);
     }
 
@@ -53,9 +52,8 @@ export const GlobalStyle = createGlobalStyle`
         color: inherit;
     }
     .container {
-       // max-width: 1140px;
         width: 100%;
+        max-width: 1600px;
         margin: 0 auto;
-        /* padding: 0 2rem; */
     }
 `;

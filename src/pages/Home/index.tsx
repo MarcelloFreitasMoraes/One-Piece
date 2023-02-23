@@ -18,28 +18,30 @@ export default function Home() {
       </Head>
 
       <NavBar />
-      <M.Typography variant="h3" component="h2" sx={{ color: "white", textAlign: 'center', marginBottom: 2 }}>
-        Welcome to the wonderful world of One Piece
-      </M.Typography>
-      <M.Typography variant="h6" component="h2" sx={{ color: "white", textAlign: 'center' }}>
-        It s the age of pirates! Luffy, a mischievous boy, dreams of becoming
-        become the king of pirates by finding One Piece, a fabulous and
-        mysterious treasure. But, inadvertently, Luffy one day swallowed a
-        Magic devil fruit that turned him into a rubber man. Since
-        then, he manages to contort his elastic body in all directions,
-        but lost the ability to swim, the height of a pirate! Along
-        more and more incredible adventures and chance encounters, Luffy goes to the
-        few composing its crew and multiplying friendships with the peoples that
-        find out, while facing formidable enemies.
-      </M.Typography>
+      <div className="container">
+        <M.Typography variant="h3" component="h2" sx={{ color: "white", textAlign: 'center', marginBottom: 2 }}>
+          Welcome to the wonderful world of One Piece
+        </M.Typography>
+        <M.Typography variant="h6" component="h2" sx={{ color: "white", textAlign: 'center' }}>
+          It s the age of pirates! Luffy, a mischievous boy, dreams of becoming
+          become the king of pirates by finding One Piece, a fabulous and
+          mysterious treasure. But, inadvertently, Luffy one day swallowed a
+          Magic devil fruit that turned him into a rubber man. Since
+          then, he manages to contort his elastic body in all directions,
+          but lost the ability to swim, the height of a pirate! Along
+          more and more incredible adventures and chance encounters, Luffy goes to the
+          few composing its crew and multiplying friendships with the peoples that
+          find out, while facing formidable enemies.
+        </M.Typography>
 
-      <S.Box>
-        <M.Button variant="contained"
-          onClick={() => push('/characters')}
-        >
-          All Characters
-        </M.Button>
-      </S.Box>
+        <S.Box>
+          <M.Button variant="contained"
+            onClick={() => push('/characters')}
+          >
+            All Characters
+          </M.Button>
+        </S.Box>
+      </div>
     </Fragment>
   );
 }
