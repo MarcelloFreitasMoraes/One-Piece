@@ -1,15 +1,14 @@
-import axios from "axios";
 import { useRouter } from "next/router";
 import React, { Fragment, useEffect, useState } from "react";
 import Head from "next/head";
 import NavBar from "@/global/components/NavBar";
 import CardInfos from "@/global/components/CardInfos";
 import { Data } from "@/global/@types/types";
+import { API } from "@/global/config/api";
 
 export default function Description() {
   const [data, setData] = useState<Data[]>([]);
   const [open, setOpen] = React.useState(false);
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -17,18 +16,15 @@ export default function Description() {
   const { id } = router.query;
 
   useEffect(() => {
-    axios
-      .get(
-        `https://one-piece-br-default-rtdb.firebaseio.com/characters/${id}.json/`)
+      API.get(`/characters/${id}.json/`)
       .then((response) => {
-        //console.log(response, "description");
         setData(response.data);
       })
       .catch(function (error) {
         console.log(error.toJSON());
       });
   }, [id]);
-  //console.log(data, "data description");
+
   return (
     <Fragment>
       <Head>

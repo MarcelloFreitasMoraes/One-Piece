@@ -4,30 +4,29 @@ import * as M from "@mui/material";
 import * as S from "@/styles/styles.characters";
 import NavBar from "@/global/components/NavBar";
 import { Loading } from "@/global/components/Loading";
-import axios from "axios";
 import Head from "next/head";
 import { Data } from "@/global/@types/types";
-import { PaginationComponent } from "@/global/components/Pagination";
+//import { PaginationComponent } from "@/global/components/Pagination";
 import { SelectOptionsComponent } from "@/global/components/SelectOptions";
+import { API } from "@/global/config/api";
 
 export default function Characters() {
   const [data, setData] = useState<Data[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [itensPerPage, setItensPerPage] = useState(12);
+  const [page, setPage] = React.useState(2);
+  const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
   const getOnePiece = () => {
-    const baseUrl = `https://one-piece-br-default-rtdb.firebaseio.com/characters.json`;
     setLoading(true);
-    axios
-      .get(baseUrl)
+    API.get('/characters.json')
       .then((res) => {
         setData(res.data);
         setLoading(false);
       })
       .catch((err) => console.log(err));
   };
-console.log(data, 'data');
 
   useEffect(() => {
     getOnePiece();
@@ -52,20 +51,34 @@ console.log(data, 'data');
   const currentItens = data && Object.entries(data).slice(startIndex, endIndex);
   console.log(currentItens, "currentItens");
 
-  const resultSearchTitle = () => {
-    return (
-      <S.Heading>
-        <SelectOptionsComponent
-          itensPerPage={itensPerPage}
-          setItensPerPage={setItensPerPage}
-        />
-      </S.Heading>
-    );
-  };
+  // const resultSearchTitle = () => {
+  //   return (
+  //     <S.Heading>
+  //       <SelectOptionsComponent
+  //         itensPerPage={itensPerPage}
+  //         setItensPerPage={setItensPerPage}
+  //       />
+  //     </S.Heading>
+  //   );
+  // };
 
   useEffect(() => {
     setCurrentPage(0);
   }, [itensPerPage]);
+
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <Fragment>
@@ -75,7 +88,7 @@ console.log(data, 'data');
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar pieceFilter={pieceFilter} />
+      <NavBar pieceFilter={pieceFilter} IsSearch />
       {/* {resultSearchTitle()} */}
       {loading ? (
         <Loading />
@@ -87,14 +100,22 @@ console.log(data, 'data');
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
             {data && Object.entries(data).map((item, index) => {
-                console.log(item, "item");
-                return (
-                  <M.Grid item xs={3} key={index}>
-                    <CardsPiece data={item} />
-                  </M.Grid>
-                );
-              })}
+              return (
+                <M.Grid item xs={3} key={index}>
+                  <CardsPiece data={item} />
+                </M.Grid>
+              );
+            })}
           </M.Grid>
+          <M.TablePagination
+            component="div"
+            color="primary"
+            count={100}
+            page={page}
+            onPageChange={handleChangePage}
+            rowsPerPage={rowsPerPage}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
           {/* <PaginationComponent
             pages={pages}
             setCurrentPage={setCurrentPage}

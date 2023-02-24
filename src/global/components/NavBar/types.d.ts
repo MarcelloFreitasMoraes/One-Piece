@@ -1,6 +1,6 @@
-export interface NavProps {
+export interface NavProps <T = any>{
     data?: Data
-    pieceFilter?: (event: string) => void;
+    pieceFilter?: T;
     IsSearch?: boolean
     isBack?: boolean
     value?: Data
