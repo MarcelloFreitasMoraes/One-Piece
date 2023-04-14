@@ -4,6 +4,7 @@ export interface INumberPages {
     pages: number;
     setCurrentPage: React.Dispatch<SetStateAction<number>>;
     currentPage: number;
+    isActive?: any;
 }
 
 export interface IStyledProps {

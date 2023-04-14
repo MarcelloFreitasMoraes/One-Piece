@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "11.10.5",
     "@emotion/styled": "11.10.5",
+    "@fontsource/inter": "^4.5.15",
     "@mui/icons-material": "5.11.0",
     "@mui/material": "5.11.6",
     "@mui/styled-engine-sc": "5.11.0",
@@ -20,12 +21,13 @@
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "axios": "1.2.5",
+    "create-use-context": "2.0.2",
     "eslint": "8.32.0",
     "eslint-config-next": "13.1.5",
     "next": "13.1.5",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-context-api": "1.0.2",
+    "react-dom": "^18.2.0",
     "react-spring": "^8.x",
     "styled-components": "^5.x",
     "typescript": "4.9.4"

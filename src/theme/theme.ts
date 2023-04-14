@@ -1,4 +1,4 @@
-import createTheme from "@mui/material/styles/createTheme";
+import {createTheme} from "@mui/material";
 
 export const Theme = createTheme({
   palette: {
@@ -9,6 +9,7 @@ export const Theme = createTheme({
     }
   },
   typography: {
+    fontFamily: ["inter", "cursive"].join(","),
     h3: {
       fontSize: '2.5rem'
     }

@@ -6,9 +6,10 @@ import NavBar from "@/global/components/NavBar";
 import { Loading } from "@/global/components/Loading";
 import Head from "next/head";
 import { Data } from "@/global/@types/types";
-//import { PaginationComponent } from "@/global/components/Pagination";
+import { PaginationComponent } from "@/global/components/Pagination";
 import { SelectOptionsComponent } from "@/global/components/SelectOptions";
 import { API } from "@/global/config/api";
+import { useOnePiece } from "@/global/Provider/context";
 
 export default function Characters() {
   const [data, setData] = useState<Data[]>([]);
@@ -17,6 +18,9 @@ export default function Characters() {
   const [itensPerPage, setItensPerPage] = useState(12);
   const [page, setPage] = React.useState(2);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const { personagemAtual  } = useOnePiece
+  console.log(personagemAtual, 'characters');
+  
 
   const getOnePiece = () => {
     setLoading(true);
@@ -51,16 +55,16 @@ export default function Characters() {
   const currentItens = data && Object.entries(data).slice(startIndex, endIndex);
   console.log(currentItens, "currentItens");
 
-  // const resultSearchTitle = () => {
-  //   return (
-  //     <S.Heading>
-  //       <SelectOptionsComponent
-  //         itensPerPage={itensPerPage}
-  //         setItensPerPage={setItensPerPage}
-  //       />
-  //     </S.Heading>
-  //   );
-  // };
+  const resultSearchTitle = () => {
+    return (
+      <S.Heading>
+        <SelectOptionsComponent
+          itensPerPage={itensPerPage}
+          setItensPerPage={setItensPerPage}
+        />
+      </S.Heading>
+    );
+  };
 
   useEffect(() => {
     setCurrentPage(0);
@@ -89,7 +93,7 @@ export default function Characters() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <NavBar pieceFilter={pieceFilter} IsSearch />
-      {/* {resultSearchTitle()} */}
+      {resultSearchTitle()}
       {loading ? (
         <Loading />
       ) : (
@@ -99,7 +103,7 @@ export default function Characters() {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {data && Object.entries(data).map((item, index) => {
+            {currentItens?.map((item, index) => {
               return (
                 <M.Grid item xs={3} key={index}>
                   <CardsPiece data={item} />
@@ -107,20 +111,12 @@ export default function Characters() {
               );
             })}
           </M.Grid>
-          <M.TablePagination
-            component="div"
-            color="primary"
-            count={100}
-            page={page}
-            onPageChange={handleChangePage}
-            rowsPerPage={rowsPerPage}
-            onRowsPerPageChange={handleChangeRowsPerPage}
-          />
-          {/* <PaginationComponent
-            pages={pages}
-            setCurrentPage={setCurrentPage}
-            currentPage={currentPage}
-          /> */}
+          <PaginationComponent
+              pages={page}
+              setCurrentPage={setCurrentPage}
+              currentPage={currentPage} 
+              setPage={setPage}
+              />
         </>
       )}
     </Fragment>

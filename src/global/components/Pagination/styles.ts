@@ -10,6 +10,7 @@ export const Pagination = styled.ul`
 `
 
 export const Button = styled.button<IStyledProps>`
+color: white;
     height: 2rem;
     width: 2rem;
     display: flex;
@@ -20,7 +21,7 @@ export const Button = styled.button<IStyledProps>`
     margin-right: 0.5rem;
     border-radius: var(--border-r);
     transition: background-color 0.2s;
-    &:hover {
+    /* &:hover {
         background-color: var(--red-400);
-    }
+    } */
 `
