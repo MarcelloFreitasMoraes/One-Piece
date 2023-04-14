@@ -70,20 +70,6 @@ export default function Characters() {
     setCurrentPage(0);
   }, [itensPerPage]);
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
-    newPage: number,
-  ) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   return (
     <Fragment>
       <Head>
@@ -103,7 +89,7 @@ export default function Characters() {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {currentItens?.map((item, index) => {
+            {data && Object.entries(data).map((item, index) => {
               return (
                 <M.Grid item xs={3} key={index}>
                   <CardsPiece data={item} />
