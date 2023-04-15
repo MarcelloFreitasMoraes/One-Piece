@@ -16,11 +16,11 @@ export default function Characters() {
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [itensPerPage, setItensPerPage] = useState(12);
-  const [page, setPage] = React.useState(2);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  const { personagemAtual  } = useOnePiece
-  console.log(personagemAtual, 'characters');
-  
+
+  const pages = Math.ceil(data && Object.entries(data).length / itensPerPage);
+  const startIndex = currentPage * itensPerPage;
+  const endIndex = startIndex + itensPerPage;
+  const currentItens = data && Object.entries(data).slice(startIndex, endIndex);
 
   const getOnePiece = () => {
     setLoading(true);
@@ -49,12 +49,6 @@ export default function Characters() {
     setData(filterPiece);
   };
 
-  const pages = Math.ceil(data.length / itensPerPage);
-  const startIndex = currentPage * itensPerPage;
-  const endIndex = startIndex + itensPerPage;
-  const currentItens = data && Object.entries(data).slice(startIndex, endIndex);
-  console.log(currentItens, "currentItens");
-
   const resultSearchTitle = () => {
     return (
       <S.Heading>
@@ -67,8 +61,10 @@ export default function Characters() {
   };
 
   useEffect(() => {
-    setCurrentPage(0);
-  }, [itensPerPage]);
+    if (!Number.isInteger(itensPerPage) || itensPerPage <= 0) {
+      setItensPerPage(12);
+    }
+  }, [itensPerPage, pages]);
 
   return (
     <Fragment>
@@ -89,7 +85,7 @@ export default function Characters() {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {data && Object.entries(data).map((item, index) => {
+            {currentItens?.map((item, index) => {
               return (
                 <M.Grid item xs={3} key={index}>
                   <CardsPiece data={item} />
@@ -98,10 +94,9 @@ export default function Characters() {
             })}
           </M.Grid>
           <PaginationComponent
-              pages={page}
+              pages={pages}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage} 
-              setPage={setPage}
               />
         </>
       )}

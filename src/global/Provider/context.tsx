@@ -31,16 +31,12 @@ const OnePieceContextProvider = ({ children }: MyProviderProps) => {
         const response = await API.get('/characters.json');
         setPersonagemAtual(response.data);
         setLoading(false);
-        console.log(response, 'ress');
       } catch (error) {
         console.error(error);
       }
     };
     fetchOnePieceData();
   }, []);
-  
-  console.log(personagemAtual, 'personagemAtual');
-  
 
   return (
     <OnePieceContext.Provider value={{ personagemAtual, setPersonagemAtual, loading, setLoading }}>

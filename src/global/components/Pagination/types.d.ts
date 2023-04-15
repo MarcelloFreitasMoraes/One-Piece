@@ -1,10 +1,9 @@
 import React, { SetStateAction } from 'react';
 
 export interface INumberPages {
-    pages: number;
+    pages: any;
     setCurrentPage: React.Dispatch<SetStateAction<number>>;
     currentPage: number;
-    isActive?: any;
 }
 
 export interface IStyledProps {

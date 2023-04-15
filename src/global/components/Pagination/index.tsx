@@ -1,9 +1,13 @@
-import React, { useState } from 'react'
-import * as S from './styles';
-import { INumberPages } from './types';
+import React, { useState } from "react";
+import * as S from "./styles";
+import { INumberPages } from "./types";
 
-export function PaginationComponent({ pages, setCurrentPage, currentPage, setPage }: INumberPages) {
-  const [localPage, setLocalPage] = useState(currentPage);
+export function PaginationComponent({
+  pages,
+  setCurrentPage,
+  currentPage,
+}: INumberPages) {
+  const [localPage, setLocalPage] = useState<any>(currentPage);
 
   const handlePrevPage = () => {
     const newPage = Math.max(localPage - 1, 1);
@@ -19,13 +23,12 @@ export function PaginationComponent({ pages, setCurrentPage, currentPage, setPag
 
   return (
     <S.Pagination>
-       <button disabled={localPage === 1} onClick={handlePrevPage}>
+      <button disabled={localPage === 1} onClick={handlePrevPage}>
         Voltar
       </button>
 
-   {Array.from({ length: pages }, (_value, index) => {
+      {Array.from(Array(pages), (_value, index) => {
         const pageNumber = index + 1;
-        const isActive = localPage === pageNumber;
 
         const handleClick = () => {
           setLocalPage(pageNumber);
@@ -33,7 +36,12 @@ export function PaginationComponent({ pages, setCurrentPage, currentPage, setPag
         };
 
         return (
-          <S.Button key={index} isActive={isActive} onClick={handleClick}>
+          <S.Button
+           key={index}
+           index={index}
+           value={index}
+           currentPage={currentPage}
+             onClick={handleClick}>
             {pageNumber}
           </S.Button>
         );
@@ -43,5 +51,5 @@ export function PaginationComponent({ pages, setCurrentPage, currentPage, setPag
         Avançar
       </button>
     </S.Pagination>
-  )
+  );
 }
