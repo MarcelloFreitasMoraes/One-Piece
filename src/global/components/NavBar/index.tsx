@@ -13,6 +13,7 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { NavProps } from './types';
+import { usePiece } from '@/global/Provider/context';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -56,8 +57,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({ pieceFilter, IsSearch, isBack }: NavProps) {
+export default function NavBar({ IsSearch, isBack }: NavProps) {
+  const {data, fetchOnePieceData, setData} = usePiece()
   const { push } = useRouter()
+
+  React.useMemo(() => {
+    fetchOnePieceData()
+  },[])
+  
+  const pieceFilter = (name: string) => {
+    if (name === "") {
+      fetchOnePieceData();
+    }
+    let filterPiece = [];
+    for (let i in data) {
+      if (data[i]?.name?.toLowerCase()?.includes(name.toLowerCase())) {
+        filterPiece.push(data[i]);
+      }
+    }
+    setData(filterPiece);
+  };
+
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
       <AppBar position="static">

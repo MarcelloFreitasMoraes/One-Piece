@@ -5,49 +5,20 @@ import * as S from "@/styles/styles.characters";
 import NavBar from "@/global/components/NavBar";
 import { Loading } from "@/global/components/Loading";
 import Head from "next/head";
-import { Data } from "@/global/@types/types";
 import { PaginationComponent } from "@/global/components/Pagination";
 import { SelectOptionsComponent } from "@/global/components/SelectOptions";
-import { API } from "@/global/config/api";
-import { useOnePiece } from "@/global/Provider/context";
+import { usePiece } from "@/global/Provider/context";
+import { Data } from "@/global/@types/types";
 
 export default function Characters() {
-  const [data, setData] = useState<Data[]>([]);
-  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [itensPerPage, setItensPerPage] = useState(12);
+  const {data, loading} = usePiece()
 
   const pages = Math.ceil(data && Object.entries(data).length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = data && Object.entries(data).slice(startIndex, endIndex);
-
-  const getOnePiece = () => {
-    setLoading(true);
-    API.get('/characters.json')
-      .then((res) => {
-        setData(res.data);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getOnePiece();
-  }, []);
-
-  const pieceFilter = (name: string) => {
-    if (name === "") {
-      getOnePiece();
-    }
-    let filterPiece = [];
-    for (let i in data) {
-      if (data[i].name.toLowerCase().includes(name.toLowerCase())) {
-        filterPiece.push(data[i]);
-      }
-    }
-    setData(filterPiece);
-  };
 
   const resultSearchTitle = () => {
     return (
@@ -74,8 +45,7 @@ export default function Characters() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar pieceFilter={pieceFilter} IsSearch />
-      {resultSearchTitle()}
+      <NavBar IsSearch />      
       {loading ? (
         <Loading />
       ) : (
@@ -85,7 +55,7 @@ export default function Characters() {
             spacing={{ xs: 2, md: 3 }}
             columns={{ xs: 4, sm: 8, md: 12 }}
           >
-            {currentItens?.map((item, index) => {
+            {currentItens?.map((item: Data[], index: React.Key | null | undefined) => {
               return (
                 <M.Grid item xs={3} key={index}>
                   <CardsPiece data={item} />
@@ -93,11 +63,16 @@ export default function Characters() {
               );
             })}
           </M.Grid>
+          <M.Grid
+          sx={{display: 'flex', justifyContent: 'space-around'}}
+          >
+          {resultSearchTitle()}
           <PaginationComponent
               pages={pages}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage} 
               />
+              </M.Grid>
         </>
       )}
     </Fragment>

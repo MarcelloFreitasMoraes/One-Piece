@@ -3,48 +3,63 @@ import { Data } from "../@types/types";
 import { API } from "../config/api";
 
 type MyContextProps = {
-  personagemAtual: any;
-  setPersonagemAtual: React.Dispatch<SetStateAction<any>>;
+  data: any;
+  setData: React.Dispatch<SetStateAction<Data[]>>;
   loading: boolean;
   setLoading: React.Dispatch<SetStateAction<boolean>>;
+  fetchOnePieceData: any;
 };
 
 type MyProviderProps = {
   children: React.ReactNode;
 };
 
-const OnePieceContext = createContext<MyContextProps>({
-  personagemAtual: [],
-  setPersonagemAtual: () => {},
+const PieceContext = createContext<MyContextProps>({
+  data: [],
+  setData: () => {},
   loading: false,
   setLoading: () => {},
+  fetchOnePieceData: () => {},
 });
 
-const OnePieceContextProvider = ({ children }: MyProviderProps) => {
-  const [personagemAtual, setPersonagemAtual] = useState<Data[]>([]);
+const PieceContextProvider = ({ children }: MyProviderProps) => {
+  const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
+  
     const fetchOnePieceData = async () => {
       setLoading(true);
       try {
         const response = await API.get('/characters.json');
-        setPersonagemAtual(response.data);
+        console.log(response,'response');
+        setData((response.data));
         setLoading(false);
       } catch (error) {
         console.error(error);
       }
     };
+
+    useEffect(() => {
     fetchOnePieceData();
   }, []);
+  console.log(data,'personagemAtual');
 
+  const contextValue: MyContextProps = {
+    data,
+    setData,
+    loading,
+    setLoading,
+    fetchOnePieceData,
+  };
+
+  
   return (
-    <OnePieceContext.Provider value={{ personagemAtual, setPersonagemAtual, loading, setLoading }}>
+    <PieceContext.Provider value={contextValue}>
       {children}
-    </OnePieceContext.Provider>
+    </PieceContext.Provider>
   );
 };
 
-export const useOnePiece = () => useContext(OnePieceContext);
+export const usePiece = () => useContext(PieceContext);
 
-export default OnePieceContextProvider;
+export default PieceContextProvider;
