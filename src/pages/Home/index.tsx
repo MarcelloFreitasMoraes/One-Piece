@@ -20,25 +20,31 @@ export default function Home() {
       <NavBar />
       <div className="container">
         <M.Typography variant="h3" component="h2" sx={{ color: "white", textAlign: 'center', marginBottom: 2 }}>
-          Welcome to the wonderful world of One Piece
+          Bem-vindo ao maravilhoso mundo de One Piece
         </M.Typography>
         <M.Typography variant="h6" component="h2" sx={{ color: "white", textAlign: 'center' }}>
-          It s the age of pirates! Luffy, a mischievous boy, dreams of becoming
-          become the king of pirates by finding One Piece, a fabulous and
-          mysterious treasure. But, inadvertently, Luffy one day swallowed a
-          Magic devil fruit that turned him into a rubber man. Since
-          then, he manages to contort his elastic body in all directions,
-          but lost the ability to swim, the height of a pirate! Along
-          more and more incredible adventures and chance encounters, Luffy goes to the
-          few composing its crew and multiplying friendships with the peoples that
-          find out, while facing formidable enemies.
+          É a era dos piratas! Luffy, um garoto travesso, sonha em se tornar
+          torne-se o rei dos piratas encontrando One Piece, um fabuloso e
+          tesouro misterioso. Mas, inadvertidamente, um dia Luffy engoliu um
+          A fruta do diabo mágica que o transformou em um homem de borracha. Desde
+          então, ele consegue contorcer seu corpo elástico em todas as direções,
+          mas perdeu a habilidade de nadar, a altura de um pirata! Junto
+          mais e mais aventuras incríveis e encontros casuais, Luffy vai para o
+          poucos compondo sua tripulação e multiplicando amizades com os povos que
+          descubra, enquanto enfrenta inimigos formidáveis.
         </M.Typography>
 
         <S.Box>
           <M.Button variant="contained"
+            sx={{
+              ml: 1,
+              "&.MuiButtonBase-root:hover": {
+                bgcolor: "transparent"
+              }
+            }}
             onClick={() => push('/characters')}
           >
-            All Characters
+            Todos os Personagens
           </M.Button>
         </S.Box>
       </div>

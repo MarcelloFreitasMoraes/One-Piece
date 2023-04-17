@@ -7,7 +7,7 @@ type MyContextProps = {
   setData: React.Dispatch<SetStateAction<Data[]>>;
   loading: boolean;
   setLoading: React.Dispatch<SetStateAction<boolean>>;
-  fetchOnePieceData: any;
+  fetchOnePieceData: () => void;
 };
 
 type MyProviderProps = {

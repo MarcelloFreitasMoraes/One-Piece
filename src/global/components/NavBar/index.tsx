@@ -105,7 +105,7 @@ export default function NavBar({  IsSearch, isBack }: NavProps) {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Search…"
+                placeholder="Buscar"
                 inputProps={{ 'aria-label': 'search' }}
                 value={searchTerm}
                 onChange={(e) => pieceFilter(e.target.value)}

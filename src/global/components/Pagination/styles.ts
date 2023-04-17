@@ -20,12 +20,24 @@ export const Button = styled.button`
   justify-content: center;
   background-color: var(--blue-darksky);
   color: var(--light);
-  margin-right: 0.5rem;
+  margin: 0 0.5rem;
   border-radius: var(--border-r);
   transition: background-color 0.2s;
   cursor: pointer;
 `;
-export const ContainerButton = styled(Box)`
+export const ContainerButtonPrev = styled(Box)`
+  display: flex;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 10px;
+  background-color: var(--blue-darksky);
+  color: var(--light);
+  border-radius: 10px;
+  margin: 0 10px;
+`;
+
+export const ContainerButtonNext = styled(Box)`
   display: flex;
   align-items: center;
   height: 2rem;
@@ -37,6 +49,6 @@ export const ContainerButton = styled(Box)`
   margin: 0 10px;
 
   svg {
-    margin-right: 18px;
+    margin-right: 2px;
   }
 `;

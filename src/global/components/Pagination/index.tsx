@@ -58,16 +58,15 @@ export function PaginationComponent({
     <S.Pagination>
 
       {currentPage > 0 && (     
-        <S.ContainerButton>      
+        <S.ContainerButtonPrev>      
         <M.Button  
-        sx={{color: '#FFFFFF', marginRight: '10px'}} 
+        sx={{color: '#FFFFFF', minWidth: '0'}} 
         onClick={handlePrevPage}
          disabled={currentPage === 0}
         startIcon={<ArrowBack />}
         />
-      </S.ContainerButton> 
+      </S.ContainerButtonPrev> 
       )}
-
       {Array.from({ length: Math.min(MAX_ITEMS, totalPage) })
         .map((_item, index) => index + first)
         .map((page) => {
@@ -81,15 +80,14 @@ export function PaginationComponent({
             </S.Button>
           );
         })}
-
       {currentPage < pages && (        
-         <S.ContainerButton> 
+         <S.ContainerButtonNext> 
          <M.Button 
-         sx={{color: '#FFFFFF'}} 
+         sx={{color: '#FFFFFF', minWidth: '35px'}} 
             onClick={handleNextPage}
             disabled={currentPage === pages}
             startIcon={<ArrowForward />}/>       
-        </S.ContainerButton>
+        </S.ContainerButtonNext>
       )}
     </S.Pagination>
   );
