@@ -31,8 +31,7 @@ const PieceContextProvider = ({ children }: MyProviderProps) => {
       setLoading(true);
       try {
         const response = await API.get('/characters.json');
-        console.log(response,'response');
-        setData((response.data));
+        setData(response.data);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -42,7 +41,6 @@ const PieceContextProvider = ({ children }: MyProviderProps) => {
     useEffect(() => {
     fetchOnePieceData();
   }, []);
-  console.log(data,'personagemAtual');
 
   const contextValue: MyContextProps = {
     data,

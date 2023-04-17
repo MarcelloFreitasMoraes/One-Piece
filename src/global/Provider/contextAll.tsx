@@ -24,7 +24,7 @@ const OnePieceContextProvider = ({ children }: MyProviderProps) => {
   
     const fetchOnePieceData = async () => {
       try {
-        const response = await API.get(`/characters/${id}.json/`);
+        const response = await API.get(`/characters/${id}.json/`);        
         console.log(response,'response');
         setResposta(response.data);
       } catch (error) {
@@ -36,8 +36,6 @@ const OnePieceContextProvider = ({ children }: MyProviderProps) => {
     fetchOnePieceData();
   }, [id]);
 
-  console.log(resposta,'resposta');
- 
   return (
     <OnePieceContext.Provider value={{ resposta, setResposta }}>
       {children}

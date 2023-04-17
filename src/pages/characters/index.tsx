@@ -13,7 +13,7 @@ import { Data } from "@/global/@types/types";
 export default function Characters() {
   const [currentPage, setCurrentPage] = useState(0);
   const [itensPerPage, setItensPerPage] = useState(12);
-  const {data, loading} = usePiece()
+  const {data, loading, fetchOnePieceData, setData} = usePiece()
 
   const pages = Math.ceil(data && Object.entries(data).length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
@@ -37,6 +37,23 @@ export default function Characters() {
     }
   }, [itensPerPage, pages]);
 
+  useEffect(() => {
+    fetchOnePieceData()
+  },[])
+
+  const pieceFilter = (name: string) => {
+    if (name === "") {
+      fetchOnePieceData();
+    }
+    let filterPiece = [];
+    for (let i in data) {
+      if (data[i]?.name?.toLowerCase()?.includes(name.toLowerCase())) {
+        filterPiece.push(data[i]);
+      }
+    }
+    setData(filterPiece);
+  };
+
   return (
     <Fragment>
       <Head>
@@ -45,7 +62,7 @@ export default function Characters() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar IsSearch />      
+      <NavBar  IsSearch />      
       {loading ? (
         <Loading />
       ) : (

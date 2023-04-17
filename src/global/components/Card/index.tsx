@@ -8,6 +8,9 @@ export default function Cards({ data }: CardOneProps) {
   const notImage =
     "https://i.pinimg.com/564x/22/96/b7/2296b76fcbad3dd2764033c667dde33c.jpg";
 
+    console.log(data, 'data');
+    
+
   return (
     <M.Card sx={{ maxWidth: "345px", height: "25rem", margin: "0 auto" }}>
       <div onClick={() => push(`/description?id=${data[0]}`)}>

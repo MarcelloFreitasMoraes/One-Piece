@@ -57,26 +57,32 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({ IsSearch, isBack }: NavProps) {
-  const {data, fetchOnePieceData, setData} = usePiece()
-  const { push } = useRouter()
+export default function NavBar({  IsSearch, isBack }: NavProps) {
+    const { push } = useRouter()    
+    const { data, setData, fetchOnePieceData} = usePiece()
+    const [searchTerm, setSearchTerm] = React.useState('');
 
-  React.useMemo(() => {
-    fetchOnePieceData()
-  },[])
+    React.useEffect(() => {
+      fetchOnePieceData()
+    }, []);
   
-  const pieceFilter = (name: string) => {
-    if (name === "") {
-      fetchOnePieceData();
-    }
-    let filterPiece = [];
-    for (let i in data) {
-      if (data[i]?.name?.toLowerCase()?.includes(name.toLowerCase())) {
-        filterPiece.push(data[i]);
+    const pieceFilter = (name: string) => {
+      setSearchTerm(name)
+      if (name === "") {
+        fetchOnePieceData();
       }
-    }
-    setData(filterPiece);
-  };
+      let filterPiece = [];
+      for (let i in data) {
+        if (data[i]?.name?.toLowerCase()?.includes(name.toLowerCase())) {
+          filterPiece.push(data[i]);
+        }
+      }
+      setData(filterPiece);
+    };
+
+    const handleSearchChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+      setSearchTerm(event.target.value);
+    };
 
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
@@ -101,6 +107,7 @@ export default function NavBar({ IsSearch, isBack }: NavProps) {
               <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
+                value={searchTerm}
                 onChange={(e) => pieceFilter(e.target.value)}
               />
             </Search>
