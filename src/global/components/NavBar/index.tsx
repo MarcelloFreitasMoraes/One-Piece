@@ -80,6 +80,21 @@ export default function NavBar({  IsSearch, isBack }: NavProps) {
       setData(filterPiece);
     };
 
+    // const pieceFilter = (name: string) => {
+    //   setSearchTerm(name);
+    //   if (name === "") {
+    //     fetchOnePieceData();
+    //   }
+    //   const dataArray = Object.values(data).map((piece, index) => ({ id: index, ...piece }));
+    //   console.log(dataArray, 'dentro');
+    //   const filterPiece = dataArray.filter((piece) => {
+    //     console.log(piece, 'piece');
+    //     return piece.name && piece.name.toLowerCase().includes(name.toLowerCase());
+    //   });
+    //   setData(filterPiece);
+    // };
+    
+
     const handleSearchChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
       setSearchTerm(event.target.value);
     };

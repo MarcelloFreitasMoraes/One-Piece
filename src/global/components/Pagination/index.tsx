@@ -56,7 +56,6 @@ export function PaginationComponent({
 
   return (
     <S.Pagination>
-
       {currentPage > 0 && (     
         <S.ContainerButtonPrev>      
         <M.Button  
@@ -69,10 +68,10 @@ export function PaginationComponent({
       )}
       {Array.from({ length: Math.min(MAX_ITEMS, totalPage) })
         .map((_item, index) => index + first)
-        .map((page) => {
+        .map((page, index) => {
           return (
             <S.Button
-              key={page.id}
+              key={index}
               onClick={() => setCurrentPage(page)}
               disabled={page === currentPage}
             >

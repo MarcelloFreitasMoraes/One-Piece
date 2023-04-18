@@ -1,5 +1,5 @@
-import CardsPiece from "@/global/components/Card";
 import React, { Fragment, useEffect, useState } from "react";
+import CardsPiece from "@/global/components/Card";
 import * as M from "@mui/material";
 import * as S from "@/styles/styles.characters";
 import NavBar from "@/global/components/NavBar";

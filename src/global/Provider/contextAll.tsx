@@ -17,7 +17,7 @@ const OnePieceContext = createContext<MyContextProps>({
   setResposta: () => {},  
 });
 
-const OnePieceContextProvider = ({ children }: MyProviderProps) => {
+export const OnePieceContextProvider = ({ children }: MyProviderProps) => {
   const [resposta, setResposta] = useState<any>();
   const router = useRouter();
   const { id } = router.query;
@@ -44,5 +44,3 @@ const OnePieceContextProvider = ({ children }: MyProviderProps) => {
 };
 
 export const useOnePiece = () => useContext(OnePieceContext);
-
-export default OnePieceContextProvider;

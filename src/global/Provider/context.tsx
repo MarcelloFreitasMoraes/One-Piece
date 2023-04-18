@@ -22,7 +22,7 @@ const PieceContext = createContext<MyContextProps>({
   fetchOnePieceData: () => {},
 });
 
-const PieceContextProvider = ({ children }: MyProviderProps) => {
+export const PieceContextProvider = ({ children }: MyProviderProps) => {
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -58,6 +58,4 @@ const PieceContextProvider = ({ children }: MyProviderProps) => {
   );
 };
 
-export const usePiece = () => useContext(PieceContext);
-
-export default PieceContextProvider;
+export const usePiece = () => useContext(PieceContext)

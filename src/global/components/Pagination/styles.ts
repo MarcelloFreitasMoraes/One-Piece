@@ -35,6 +35,10 @@ export const ContainerButtonPrev = styled(Box)`
   color: var(--light);
   border-radius: 10px;
   margin: 0 10px;
+
+  span {
+    margin: 0;
+  }
 `;
 
 export const ContainerButtonNext = styled(Box)`
@@ -47,6 +51,10 @@ export const ContainerButtonNext = styled(Box)`
   color: var(--light);
   border-radius: 10px;
   margin: 0 10px;
+
+  span {
+    margin: 0;
+  }
 
   svg {
     margin-right: 2px;
