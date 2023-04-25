@@ -4,5 +4,7 @@ export interface NavProps <T = any>{
     IsSearch?: boolean
     isBack?: boolean
     value?: Data
+    searchTerm?: any
+    setSearchTerm?: any
   }
   

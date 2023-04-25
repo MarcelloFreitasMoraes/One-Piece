@@ -11,9 +11,10 @@ import { usePiece } from "@/global/Provider/context";
 import { Data } from "@/global/@types/types";
 
 export default function Characters() {
-  const [currentPage, setCurrentPage] = useState(0);
-  const [itensPerPage, setItensPerPage] = useState(12);
+  const [currentPage, setCurrentPage] = useState(0)
+  const [itensPerPage, setItensPerPage] = useState(12)
   const {data, loading} = usePiece()
+  const [searchTerm, setSearchTerm] = React.useState('')
 
   const pages = Math.ceil(data.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
@@ -37,6 +38,9 @@ export default function Characters() {
     }
   }, [itensPerPage, pages]);
 
+  console.log(currentPage,'currentPage');
+  
+
   return (
     <Fragment>
       <Head>
@@ -45,7 +49,7 @@ export default function Characters() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar  IsSearch />      
+      <NavBar  IsSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />      
       {loading ? (
         <Loading />
       ) : (
@@ -67,11 +71,13 @@ export default function Characters() {
           sx={{display: 'flex', justifyContent: 'space-around'}}
           > */}
           {/* {resultSearchTitle()} */}
+          {searchTerm === '' && (
           <PaginationComponent
               pages={pages}
               setCurrentPage={setCurrentPage}
               currentPage={currentPage} 
               />
+               )} 
               {/* </M.Grid> */}
         </>
       )}

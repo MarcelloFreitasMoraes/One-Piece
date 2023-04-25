@@ -58,10 +58,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({ IsSearch, isBack }: NavProps) {
+export default function NavBar({ IsSearch, isBack, searchTerm, setSearchTerm }: NavProps) {
   const { push } = useRouter()
   const { data, setData, fetchOnePieceData } = usePiece()
-  const [searchTerm, setSearchTerm] = React.useState('');
 
   React.useEffect(() => {
     fetchOnePieceData()

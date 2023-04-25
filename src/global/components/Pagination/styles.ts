@@ -4,7 +4,7 @@ import { Box } from "@mui/material";
 export const Pagination = styled(Box)`
   display: flex;
   justify-content: flex-end;
-  margin: 20px 95px 20px 0;
+  margin: 20px 45px 20px 0;
   height: 5rem;
   display: flex;
   @media (max-width: 768px) {
