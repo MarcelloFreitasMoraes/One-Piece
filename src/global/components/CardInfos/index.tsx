@@ -30,7 +30,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
                 paddingLeft: "20px",
               }}
             >
-              Name: {' '}
+             <strong>Name: {' '}</strong>
               {data?.name}
             </M.Typography>
 
@@ -53,7 +53,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-            Age: {data?.age}
+            <strong>Age: {' '}</strong>
+               {data?.age}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -66,7 +67,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-            Job: {data?.job}
+          <strong>Job: {' '}</strong>
+            {data?.job}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -79,7 +81,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-            Height: {data?.height}
+            <strong>Height: {' '}</strong>            
+            {data?.height}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -92,7 +95,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-            Status: {data?.status}
+             <strong> Status: : {' '}</strong> 
+                       {data?.status}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -105,7 +109,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-            Birthday: {data?.birthday}
+             <strong>Birthday: {' '}</strong>             
+            {data?.birthday}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -118,7 +123,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-            Bounty: ฿ {' '} {data?.bounty}
+             <strong>Bounty:</strong> ฿ {' '} 
+           {data?.bounty}
           </M.Typography>
           <br />
           <M.Typography
@@ -131,7 +137,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-            Description: {data?.description}
+            <strong>Description: {' '} </strong>
+            {data?.description}
           </M.Typography>
         </M.Grid>
       </M.Card>

@@ -23,7 +23,8 @@ export default function Cards({ data }: CardOneProps) {
               height: "30px",
               whiteSpace: "nowrap",
               margin: "5px 0",
-              paddingLeft: '20px'
+              paddingLeft: '20px',
+              fontWeight: '900'
             }}
           >
             {data[1]?.name}
