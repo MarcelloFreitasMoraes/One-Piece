@@ -10,9 +10,6 @@ export default function Description() {
   const handleClose = () => setOpen(false);
   const {resposta} = useOnePiece()
 
-  console.log(resposta, 'descrition');
-  
-
   return (
     <Fragment>
       <Head>

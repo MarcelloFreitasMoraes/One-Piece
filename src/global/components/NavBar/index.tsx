@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { NavProps } from './types';
 import { usePiece } from '@/global/Provider/context';
+import { Fragment } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,47 +58,35 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar({  IsSearch, isBack }: NavProps) {
-    const { push } = useRouter()    
-    const { data, setData, fetchOnePieceData} = usePiece()
-    const [searchTerm, setSearchTerm] = React.useState('');
+export default function NavBar({ IsSearch, isBack }: NavProps) {
+  const { push } = useRouter()
+  const { data, setData, fetchOnePieceData } = usePiece()
+  const [searchTerm, setSearchTerm] = React.useState('');
 
-    React.useEffect(() => {
-      fetchOnePieceData()
-    }, []);
-  
-    const pieceFilter = (name: string) => {
-      setSearchTerm(name)
-      if (name === "") {
-        fetchOnePieceData();
-      }
-      let filterPiece = [];
-      for (let i in data) {
-        if (data[i]?.name?.toLowerCase()?.includes(name.toLowerCase())) {
-          filterPiece.push(data[i]);
-        }
-      }
+  React.useEffect(() => {
+    fetchOnePieceData()
+  }, []);
+
+  const pieceFilter = (name: string) => {
+    setSearchTerm(name);
+    if (name === "") {
+      fetchOnePieceData();
+    } else {
+      const dataArray = data.map((piece: any) => ({ ...piece }));
+      const filterPiece = dataArray.filter((piece: any) => {
+        const pieceName = piece[1]?.name?.normalize().toLowerCase().trim();
+        const searchName = name?.normalize().toLowerCase().trim();
+        return pieceName?.includes(searchName);
+      });
       setData(filterPiece);
-    };
+    }
+  };
 
-    // const pieceFilter = (name: string) => {
-    //   setSearchTerm(name);
-    //   if (name === "") {
-    //     fetchOnePieceData();
-    //   }
-    //   const dataArray = Object.values(data).map((piece, index) => ({ id: index, ...piece }));
-    //   console.log(dataArray, 'dentro');
-    //   const filterPiece = dataArray.filter((piece) => {
-    //     console.log(piece, 'piece');
-    //     return piece.name && piece.name.toLowerCase().includes(name.toLowerCase());
-    //   });
-    //   setData(filterPiece);
-    // };
-    
-
-    const handleSearchChange = (event: { target: { value: React.SetStateAction<string>; }; }) => {
-      setSearchTerm(event.target.value);
-    };
+  const handleKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      await pieceFilter(event.currentTarget.value);
+    }
+  };
 
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
@@ -123,14 +112,17 @@ export default function NavBar({  IsSearch, isBack }: NavProps) {
                 placeholder="Buscar"
                 inputProps={{ 'aria-label': 'search' }}
                 value={searchTerm}
-                onChange={(e) => pieceFilter(e.target.value)}
+                onChange={(event) => pieceFilter(event.target.value)}
+                onKeyPress={handleKeyPress}
               />
             </Search>
           }
           {isBack &&
             <Grid sx={{ display: 'flex' }} onClick={() => push('/characters')}>
-              <><ArrowBackIosNewIcon sx={{ cursor: 'pointer' }} />
-                <Typography sx={{ cursor: 'pointer' }}>VOLTAR</Typography></>
+              <Fragment>
+              <ArrowBackIosNewIcon sx={{ cursor: 'pointer' }} />
+                <Typography sx={{ cursor: 'pointer' }}>VOLTAR</Typography>
+                </Fragment>
             </Grid>
           }
         </Toolbar>

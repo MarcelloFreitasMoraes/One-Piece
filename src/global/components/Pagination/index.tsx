@@ -10,39 +10,39 @@ export function PaginationComponent({
   currentPage,
 }: INumberPages) {
 
-  const [first, setFirst] = useState<any>()
+  // const [first, setFirst] = useState<any>()
 
-  const MAX_ITEMS = 5
-  const MAX_LEFT = (MAX_ITEMS - 1) / 2
-  const totalPage = Math.ceil(pages)
+  // const MAX_ITEMS = 5
+  // const MAX_LEFT = (MAX_ITEMS - 1) / 2
+  // const totalPage = Math.ceil(pages)
 
-  useEffect(() => {
-    if (currentPage === totalPage) {
-      if (totalPage === 4) {
-        setFirst(currentPage - 3)
-      } else if (totalPage === 3) {
-        setFirst(currentPage - 2)
-      } else if (totalPage === 2) {
-        setFirst(currentPage - 1)
-      } else if (totalPage === 1) {
-        setFirst(Math.max(currentPage - MAX_LEFT, 1))
-      } else {
-        setFirst(currentPage - 4)
-      }
-    } else if (currentPage === totalPage - 1) {
-      if (totalPage - 1 === 3) {
-        setFirst(currentPage - 2)
-      } else if (totalPage - 1 === 2) {
-        setFirst(currentPage - 1)
-      } else if (totalPage - 1 === 1) {
-        setFirst(Math.max(currentPage - MAX_LEFT, 1))
-      } else {
-        setFirst(currentPage - 3)
-      }
-    } else {
-      setFirst(Math.max(currentPage - MAX_LEFT, 1))
-    }
-  }, [currentPage])
+  // useEffect(() => {
+  //   if (currentPage === totalPage) {
+  //     if (totalPage === 4) {
+  //       setFirst(currentPage - 3)
+  //     } else if (totalPage === 3) {
+  //       setFirst(currentPage - 2)
+  //     } else if (totalPage === 2) {
+  //       setFirst(currentPage - 1)
+  //     } else if (totalPage === 1) {
+  //       setFirst(Math.max(currentPage - MAX_LEFT, 1))
+  //     } else {
+  //       setFirst(currentPage - 4)
+  //     }
+  //   } else if (currentPage === totalPage - 1) {
+  //     if (totalPage - 1 === 3) {
+  //       setFirst(currentPage - 2)
+  //     } else if (totalPage - 1 === 2) {
+  //       setFirst(currentPage - 1)
+  //     } else if (totalPage - 1 === 1) {
+  //       setFirst(Math.max(currentPage - MAX_LEFT, 1))
+  //     } else {
+  //       setFirst(currentPage - 3)
+  //     }
+  //   } else {
+  //     setFirst(Math.max(currentPage - MAX_LEFT, 1))
+  //   }
+  // }, [currentPage])
 
   const handlePrevPage = () => {
     const newPage = Math.max(currentPage - 1);
@@ -66,7 +66,7 @@ export function PaginationComponent({
         />
       </S.ContainerButtonPrev> 
       )}
-      {Array.from({ length: Math.min(MAX_ITEMS, totalPage) })
+      {/* {Array.from({ length: Math.min(MAX_ITEMS, totalPage) })
         .map((_item, index) => index + first)
         .map((page, index) => {
           return (
@@ -78,7 +78,7 @@ export function PaginationComponent({
               {page}
             </S.Button>
           );
-        })}
+        })} */}
       {currentPage < pages && (        
          <S.ContainerButtonNext> 
          <M.Button 

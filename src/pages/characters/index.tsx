@@ -15,10 +15,10 @@ export default function Characters() {
   const [itensPerPage, setItensPerPage] = useState(12);
   const {data, loading} = usePiece()
 
-  const pages = Math.ceil(data && Object.entries(data).length / itensPerPage);
+  const pages = Math.ceil(data.length / itensPerPage);
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
-  const currentItens = data && Object.entries(data).slice(startIndex, endIndex);
+  const currentItens = data.slice(startIndex, endIndex);
 
   // const resultSearchTitle = () => {
   //   return (

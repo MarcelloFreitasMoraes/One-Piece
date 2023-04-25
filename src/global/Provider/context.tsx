@@ -25,13 +25,12 @@ const PieceContext = createContext<MyContextProps>({
 export const PieceContextProvider = ({ children }: MyProviderProps) => {
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
-
   
     const fetchOnePieceData = async () => {
       setLoading(true);
       try {
         const response = await API.get('/characters.json');
-        setData(response.data);
+        setData(Object.entries(response.data));
         setLoading(false);
       } catch (error) {
         console.error(error);
