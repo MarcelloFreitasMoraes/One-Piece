@@ -25,7 +25,6 @@ export const OnePieceContextProvider = ({ children }: MyProviderProps) => {
     const fetchOnePieceData = async () => {
       try {
         const response = await API.get(`/characters/${id}.json/`);        
-        console.log(response,'response');
         setResposta(response.data);
       } catch (error) {
         console.error(error);

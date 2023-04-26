@@ -39,6 +39,7 @@ export default function Modals({ handleClose, open, data }: ModalProps) {
                         <strong>Type:</strong>{" "}
                         {data?.fruit?.type !== "" ? data?.fruit?.type : ""}
                     </M.Typography>
+                    <br/>
                     <M.Typography id="keep-mounted-modal-description">
                         <strong>Power:</strong>{" "}
                         {data?.fruit?.power !== "" ? data?.fruit?.power : ""}

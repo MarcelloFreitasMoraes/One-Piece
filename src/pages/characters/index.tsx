@@ -6,14 +6,14 @@ import NavBar from "@/global/components/NavBar";
 import { Loading } from "@/global/components/Loading";
 import Head from "next/head";
 import { PaginationComponent } from "@/global/components/Pagination";
-//import { SelectOptionsComponent } from "@/global/components/SelectOptions";
+import { SelectOptionsComponent } from "@/global/components/SelectOptions";
 import { usePiece } from "@/global/Provider/context";
 import { Data } from "@/global/@types/types";
 
 export default function Characters() {
   const [currentPage, setCurrentPage] = useState(0)
   const [itensPerPage, setItensPerPage] = useState(12)
-  const {data, loading} = usePiece()
+  const { data, loading } = usePiece()
   const [searchTerm, setSearchTerm] = React.useState('')
 
   const pages = Math.ceil(data.length / itensPerPage);
@@ -21,25 +21,22 @@ export default function Characters() {
   const endIndex = startIndex + itensPerPage;
   const currentItens = data.slice(startIndex, endIndex);
 
-  // const resultSearchTitle = () => {
-  //   return (
-  //     <S.Heading>
-  //       <SelectOptionsComponent
-  //         itensPerPage={itensPerPage}
-  //         setItensPerPage={setItensPerPage}
-  //       />
-  //     </S.Heading>
-  //   );
-  // };
+  const resultSearchTitle = () => {
+    return (
+      <S.Heading>
+        <SelectOptionsComponent
+          itensPerPage={itensPerPage}
+          setItensPerPage={setItensPerPage}
+        />
+      </S.Heading>
+    );
+  };
 
   useEffect(() => {
     if (!Number.isInteger(itensPerPage) || itensPerPage <= 0) {
       setItensPerPage(12);
     }
   }, [itensPerPage, pages]);
-
-  console.log(currentPage,'currentPage');
-  
 
   return (
     <Fragment>
@@ -49,7 +46,7 @@ export default function Characters() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavBar  IsSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />      
+      <NavBar IsSearch searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       {loading ? (
         <Loading />
       ) : (
@@ -67,18 +64,20 @@ export default function Characters() {
               );
             })}
           </M.Grid>
-          {/* <M.Grid
-          sx={{display: 'flex', justifyContent: 'space-around'}}
-          > */}
-          {/* {resultSearchTitle()} */}
-          {searchTerm === '' && (
-          <PaginationComponent
-              pages={pages}
-              setCurrentPage={setCurrentPage}
-              currentPage={currentPage} 
-              />
-               )} 
-              {/* </M.Grid> */}
+          <M.Grid
+            sx={{ display: 'flex', justifyContent: 'space-between' }}
+          >
+            {searchTerm === '' && (
+              <Fragment>
+                <M.Box sx={{ marginLeft: '2.5rem' }}>
+                  {resultSearchTitle()}
+                </M.Box><PaginationComponent
+                  pages={pages}
+                  setCurrentPage={setCurrentPage}
+                  currentPage={currentPage} />
+              </Fragment>
+            )}
+          </M.Grid>
         </>
       )}
     </Fragment>

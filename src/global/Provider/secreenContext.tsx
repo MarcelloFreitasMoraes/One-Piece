@@ -27,8 +27,6 @@ export const ResponsiveProvider = ({ children }: { children: React.ReactNode }) 
     typeof window !== 'undefined' && window.localStorage.setItem('responsiveWidth', widthScreen.toString());
   }, [widthScreen]);
 
-  console.log(widthScreen, "widthScreen")
-
   return (
     <ResponsiveContext.Provider value={{ widthScreen }}>
       {children}
