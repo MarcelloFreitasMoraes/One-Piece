@@ -4,7 +4,7 @@ import * as S from "./styles";
 import { INumberPages } from "./types";
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
 
-export function PaginationComponent({
+export default function PaginationComponent({
   pages,
   setCurrentPage,
   currentPage,

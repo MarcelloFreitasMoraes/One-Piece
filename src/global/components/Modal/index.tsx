@@ -60,7 +60,7 @@ export default function Modals({ handleClose, open, data }: ModalProps) {
                         </M.Grid>
                         <S.Fruit
                             src={data?.fruit?.img !== "" ? data?.fruit?.img : ""}
-                            alt="Fuit"
+                            alt="Fruit"
                         />
                     </M.Grid>                  
                 </M.Box>

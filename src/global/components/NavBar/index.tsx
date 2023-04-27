@@ -81,12 +81,6 @@ export default function NavBar({ IsSearch, isBack, searchTerm, setSearchTerm }: 
     }
   };
 
-  const handleKeyPress = async (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      await pieceFilter(event.currentTarget.value);
-    }
-  };
-
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
       <AppBar position="static">
@@ -112,7 +106,6 @@ export default function NavBar({ IsSearch, isBack, searchTerm, setSearchTerm }: 
                 inputProps={{ 'aria-label': 'search' }}
                 value={searchTerm}
                 onChange={(event) => pieceFilter(event.target.value)}
-                onKeyPress={handleKeyPress}
               />
             </Search>
           }

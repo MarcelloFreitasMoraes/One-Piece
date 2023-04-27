@@ -19,6 +19,8 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
         <S.Img src={data?.img !== "" ? data?.img : notImage} alt="img" />
         <M.Grid>
           <M.Grid sx={{ display: 'flex', justifyContent: 'space-between' }} >
+
+            {data?.name !== '' && (
             <M.Typography
               gutterBottom
               variant="h5"
@@ -31,8 +33,9 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               }}
             >
              <strong>Name: {' '}</strong>
-              {data?.name}
+              {data?.name !== '' ? data?.name : 'Desconhecido'}
             </M.Typography>
+            )}
 
             {data?.fruit?.returned !== 0 && (
               <M.Grid sx={{ cursor: 'pointer' }} onClick={handleOpen}>
@@ -42,6 +45,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
             )}
 
           </M.Grid>
+          {data?.age !== '' && (
           <M.Typography
             gutterBottom
             variant="h5"
@@ -54,8 +58,9 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
             }}
           >
             <strong>Age: {' '}</strong>
-               {data?.age}
+               {data?.age !== '' ? data?.age : 'Desconhecido'}
           </M.Typography>
+)}
           <M.Typography
             gutterBottom
             variant="h5"
@@ -68,7 +73,7 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
             }}
           >
           <strong>Job: {' '}</strong>
-            {data?.job}
+            {data?.job !== '' ? data?.job : 'Desconhecido'}
           </M.Typography>
           <M.Typography
             gutterBottom
@@ -82,8 +87,9 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
             }}
           >
             <strong>Height: {' '}</strong>            
-            {data?.height}
+            {data?.height !== '' ? data?.height : 'Desconhecido'}
           </M.Typography>
+          {data?.status !== '' && (
           <M.Typography
             gutterBottom
             variant="h5"
@@ -96,8 +102,11 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
             }}
           >
              <strong> Status: : {' '}</strong> 
-                       {data?.status}
+                       {data?.status !== '' ? data?.status : 'Desconhecido'}
           </M.Typography>
+          )}
+
+          {data?.birthday !== '' && (
           <M.Typography
             gutterBottom
             variant="h5"
@@ -110,8 +119,9 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
             }}
           >
              <strong>Birthday: {' '}</strong>             
-            {data?.birthday}
+            {data?.birthday !== '' ? data?.birthday : 'Desconhecido'}
           </M.Typography>
+          )}
           <M.Typography
             gutterBottom
             variant="h5"
@@ -123,10 +133,12 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
               paddingLeft: "20px",
             }}
           >
-             <strong>Bounty:</strong> ฿ {' '} 
-           {data?.bounty}
+             <strong>Bounty:</strong>{data?.bounty === '' ?  '' : '฿' }{' '}
+           {data?.bounty !== '' ? data?.bounty : 'Desconhecido'}
           </M.Typography>
           <br />
+
+          {data?.description !== '' && (
           <M.Typography
             gutterBottom
             variant="h6"
@@ -138,8 +150,9 @@ export default function CardInfos({ data, open, handleClose, handleOpen }: CardI
             }}
           >
             <strong>Description: {' '} </strong>
-            {data?.description}
+            {data?.description !== '' ? data?.description : 'Desconhecido'}
           </M.Typography>
+          )}          
         </M.Grid>
       </M.Card>
       <div>

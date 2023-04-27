@@ -5,8 +5,8 @@ import * as S from "@/styles/styles.characters";
 import NavBar from "@/global/components/NavBar";
 import { Loading } from "@/global/components/Loading";
 import Head from "next/head";
-import { PaginationComponent } from "@/global/components/Pagination";
-import { SelectOptionsComponent } from "@/global/components/SelectOptions";
+import  PaginationComponent  from "@/global/components/Pagination";
+import  SelectOptionsComponent  from "@/global/components/SelectOptions";
 import { usePiece } from "@/global/Provider/context";
 import { Data } from "@/global/@types/types";
 
