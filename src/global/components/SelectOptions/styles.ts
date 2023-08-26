@@ -1,11 +1,10 @@
 import styled from "styled-components"
 
 export const Select = styled.select`
-    background: var(--blue-darksky);
+    background: var(--blue);
     color: var(--light);
     border-radius: var(--border-r);
     padding: 1rem;
-    margin-left: 1rem;
 
     cursor: pointer;
 

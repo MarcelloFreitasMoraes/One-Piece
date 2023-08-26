@@ -82,7 +82,7 @@ export default function NavBar({ IsSearch, isBack, searchTerm, setSearchTerm }: 
   };
 
   return (
-    <Box sx={{ flexGrow: 1, marginBottom: 10 }}>
+    <Box sx={{ flexGrow: 1, marginBottom: 5 }}>
       <AppBar position="static">
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <IconButton
@@ -119,7 +119,6 @@ export default function NavBar({ IsSearch, isBack, searchTerm, setSearchTerm }: 
           }
         </Toolbar>
       </AppBar>
-
     </Box>
   );
 }

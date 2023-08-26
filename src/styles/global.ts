@@ -3,11 +3,11 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
     :root {
         //Colors
-         --light: #ffffff;
-
+        --light: #ffffff;         
+        --blue: #1976d3;
         --blue-dark: #0a0f19;
         --blue-darksky: #5E6D8C;
-
+        --transparent: rgba(0, 0, 0, 0.3);
 
         //Fonts
         --font-family-title: 'Roboto', sans-serif;
@@ -33,7 +33,10 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         width: 100%;
-        background-color: var(--blue-dark);
+        background-color: var(--blue-dark);     
+        background-size: 100%;
+        background-repeat: no-repeat;
+        object-fit: cover;
     }
 
     textarea, button, select, input, span, a, h1, h2, h3, h4, h5, h6 {
@@ -55,5 +58,7 @@ export const GlobalStyle = createGlobalStyle`
         width: 100%;
         max-width: 1600px;
         margin: 0 auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 20px;
     }
 `;

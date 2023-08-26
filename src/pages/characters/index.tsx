@@ -12,7 +12,7 @@ import { Data } from "@/global/@types/types";
 
 export default function Characters() {
   const [currentPage, setCurrentPage] = useState(0)
-  const [itensPerPage, setItensPerPage] = useState(12)
+  const [itensPerPage, setItensPerPage] = useState(8)
   const { data, loading } = usePiece()
   const [searchTerm, setSearchTerm] = React.useState('')
 
@@ -65,13 +65,14 @@ export default function Characters() {
             })}
           </M.Grid>
           <M.Grid
-            sx={{ display: 'flex', justifyContent: 'space-between' }}
+            sx={{ display: 'flex', justifyContent: 'space-between', padding: '0 55px', marginTop: '1rem' }}
           >
             {searchTerm === '' && (
               <Fragment>
-                <M.Box sx={{ marginLeft: '2.5rem' }}>
+                <M.Box>
                   {resultSearchTitle()}
-                </M.Box><PaginationComponent
+                </M.Box>
+                <PaginationComponent
                   pages={pages}
                   setCurrentPage={setCurrentPage}
                   currentPage={currentPage} />

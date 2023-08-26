@@ -26,20 +26,23 @@ export const PieceContextProvider = ({ children }: MyProviderProps) => {
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(false);
   
-    const fetchOnePieceData = async () => {
-      setLoading(true);
-      try {
+  const fetchOnePieceData = async () => {
+    setLoading(true);
+    try {
+      setTimeout(async () => {
         const response = await API.get('/characters.json');
         setData(Object.entries(response.data));
         setLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    useEffect(() => {
+      }, 6000);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  useEffect(() => {
     fetchOnePieceData();
   }, []);
+  
 
   const contextValue: MyContextProps = {
     data,

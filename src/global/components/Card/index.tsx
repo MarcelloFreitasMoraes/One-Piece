@@ -32,8 +32,11 @@ export default function Cards({ data }: CardOneProps) {
           <M.CardContent sx={{ padding: "0" }}>
             <M.CardMedia
               component="img"
-              height="auto"
-              max-width="100%"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
               image={data[1]?.img !== "" ? data[1]?.img : notImage}
               alt="characters"
             />

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Box } from "@mui/material";
 
 export const Heading = styled(Box)`
-    margin: 2rem 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
